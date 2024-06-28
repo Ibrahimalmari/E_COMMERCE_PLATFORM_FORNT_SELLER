@@ -1,38 +1,32 @@
-.App {
-  text-align: center;
+th {
+    font-family: 'Roboto', sans-serif;
+    /* استخدم اسم الخط الذي تفضله من Google Fonts */
+    font-weight: 700;
+    /* تحديد سمك الخط (bold) حسب الحاجة */
+    font-size: 16px;
+    /* حجم الخط حسب الحاجة */
+    color: #333;
+    /* لون الخط حسب الحاجة */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.loading-container {
+    position: fixed;
+    top: 50%;
+    left: 57%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.loading-container>div {
+    text-align: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.loading-container-login{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
 }
