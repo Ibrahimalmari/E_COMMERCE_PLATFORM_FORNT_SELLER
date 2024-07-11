@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { BsPencil, BsTrash, BsTable } from 'react-icons/bs';
 import "../../App.css";
-import {  useParams } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
 
 export default function Branch() {
@@ -17,11 +16,11 @@ export default function Branch() {
     useEffect(() => {
         const fetchData = async () => {
             const id = localStorage.getItem('id');
-
+                console.log(id)
             try {
                 const response = await axios.get(`http://127.0.0.1:8000/api/displaybranch/${id}`);
-                if(response.data.branch){
-                  setData(response.data.branch)
+                if(response.data.branches){
+                  setData(response.data.branches)
                   setLoading(false)
                 }
                 else{

@@ -44,7 +44,7 @@ const EditProduct = () => {
             try {
                 const branchRes = await axios.get(`http://127.0.0.1:8000/api/displaybranch/${id}`);
                 if (branchRes.data.status === 200) {
-                    setBranches(branchRes.data.branch);
+                    setBranches(branchRes.data.branches);
                 }
             } catch (error) {
                 console.error(error);
@@ -282,9 +282,9 @@ const EditProduct = () => {
                                                 }}
                                             >
                                                 <option value=''>Select Branch</option>
-                                                {branches.map((branch) => (
-                                                    <option key={branch.id} value={branch.id}>
-                                                        {branch.name}
+                                                {branches.map((branches) => (
+                                                    <option key={branches.id} value={branches.id}>
+                                                        {branches.name}
                                                     </option>
                                                 ))}
                                             </select>

@@ -48,24 +48,24 @@ const AddProduct = () => {
           }
       };
   
-    //   const fetchBranch = async () => {
-    //     try {
-    //         const branchRes = await axios.get(`http://127.0.0.1:8000/api/displaybranch/${id}`);
-    //         if (branchRes.data.status === 200 && branchRes.data.branch) {
-    //             setBranch(branchRes.data.branch);
-    //         } else {
-    //             // يمكنك تعيين قيمة افتراضية هنا إذا كانت branch غير موجودة
-    //             setBranch(null); // أو أي قيمة افتراضية أخرى تناسب احتياجاتك
-    //         }
-    //     } catch (error) {
-    //         console.error(error);
-    //         // يمكنك التعامل مع الخطأ هنا إذا لزم الأمر
-    //     }
-    // };
+          const fetchBranch = async () => {
+            try {
+                const branchRes = await axios.get(`http://127.0.0.1:8000/api/displaybranch/${id}`);
+                if (branchRes.data.status === 200 && branchRes.data.branches) {
+                    setBranch(branchRes.data.branches);
+                } else {
+                    // يمكنك تعيين قيمة افتراضية هنا إذا كانت branch غير موجودة
+                    setBranch(null); // أو أي قيمة افتراضية أخرى تناسب احتياجاتك
+                }
+            } catch (error) {
+                console.error(error);
+                // يمكنك التعامل مع الخطأ هنا إذا لزم الأمر
+            }
+        };
   
       const fetchData = async () => {
           setLoading(true);
-          await Promise.all([fetchStore(), fetchCategory()]);
+          await Promise.all([fetchStore(), fetchCategory(),fetchBranch()]);
           setLoading(false);
       };
   
@@ -244,9 +244,9 @@ const AddProduct = () => {
                         value={selectedbranch}
                         onChange={(e) =>{setSelectedBranch(e.target.value)}} >
                         <option value="">Select Branch</option>
-                        {branches.map((branch) => (
-                            <option key={branch.id} value={branch.id}>
-                            {branch.name}
+                        {branches.map((branches) => (
+                            <option key={branches.id} value={branches.id}>
+                            {branches.name}
                             </option>
                         ))}
                         </select>

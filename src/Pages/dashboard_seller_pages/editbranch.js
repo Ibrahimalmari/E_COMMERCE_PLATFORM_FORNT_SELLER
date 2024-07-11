@@ -6,7 +6,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 const EditBranch = () => {
     const navigate = useNavigate();
-    const id = localStorage.getItem('id');
+    const { id } = useParams();
     const [name, setName] = useState('');
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
@@ -14,30 +14,36 @@ const EditBranch = () => {
     const [errors, setErrors] = useState({});
 
     useEffect(() => {
-        const fetchBranch = async () => {
+        const fetchData = async () => {
+            const id_user = localStorage.getItem('id');
+
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/api/branch/${id}`);
-                const { branch } = response.data;
-                setName(branch.name);
-                setSelectedCategory(branch.category_id);
+                const [categoryRes, branchRes] = await Promise.all([
+                    axios.get(`http://127.0.0.1:8000/api/displaycategory/${id_user}`), // fetch all categories
+                    axios.get(`http://127.0.0.1:8000/api/branch/${id}`) // fetch branch by id
+                ]);
+                console.log()
+
+                if (categoryRes.data.status === 200) {
+                    setCategories(categoryRes.data.categories || []);
+                }
+
+                if (branchRes.data.status === 200) {
+                    const branch = branchRes.data.branch;
+                    setName(branch.name);
+                    setSelectedCategory(branch.category_id);
+                }
+
                 setLoading(false);
             } catch (error) {
                 console.error(error);
-                swal('error', 'Failed to fetch branch details', 'error');
+                swal('error', 'Failed to fetch data', 'error');
                 setLoading(false);
             }
         };
 
-        fetchBranch();
+        fetchData();
     }, [id]);
-
-    useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/api/category/${id}`).then((res) => {
-            if (res.data.status === 200) {
-                setCategories(res.data.categories);
-            }
-        });
-    }, []);
 
     const validateForm = () => {
         const validationErrors = {};
@@ -57,8 +63,6 @@ const EditBranch = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const id = localStorage.getItem('id');
-
         const isFormValid = validateForm();
 
         if (!isFormValid) {
@@ -121,7 +125,7 @@ const EditBranch = () => {
                                             value={selectedCategory}
                                             onChange={(e) => setSelectedCategory(e.target.value)}>
                                             <option value=''>Select Category</option>
-                                            {categories.map((category) => (
+                                            {categories.length > 0 && categories.map((category) => (
                                                 <option key={category.id} value={category.id}>
                                                     {category.name}
                                                 </option>
