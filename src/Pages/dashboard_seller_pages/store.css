@@ -1,34 +1,114 @@
-.restaurant-list {
+.main-container {
+    padding: 20px;
+    background-color: #f4f4f9;
+    min-height: 100vh;
+}
+
+.search-container {
+    margin-bottom: 20px;
+}
+
+.search-input {
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.store-list {
     display: flex;
     flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
 }
 
-.restaurant-card {
-    width: 300px;
-    margin: 16px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.restaurant-cover img {
+.store-card {
     width: 100%;
-    height: 150px;
+    max-width: 350px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.store-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.store-cover {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.cover-image {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    transition: opacity 0.3s ease;
 }
 
-.restaurant-info {
-    padding: 7px;
+.store-info {
+    padding: 20px;
+    color: #333;
 }
 
-.restaurant-name {
-    font-size: 1.2rem;
-    margin-bottom: 8px;
+.store-name {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    font-weight: 600;
 }
 
-.restaurant-address,
-.restaurant-hours {
-    font-size: 0.9rem;
-    color: rgb(28, 28, 28);
+.divider {
+    width: 60%;
+    margin: 10px 0;
+    border: 0;
+    border-top: 2px solid #ddd;
+}
+
+.store-description {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.store-owner {
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.store-owner strong {
+    color: #333;
+}
+
+.no-results {
+    text-align: center;
+    font-size: 1.25rem;
+    color: #888;
+    margin-top: 20px;
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.pagination {
+    margin-top: 20px;
+}
+
+.page-link {
+    border-radius: 50%;
+    background-color: #1F3750;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.page-link:hover {
+    background-color: #0d2e40;
 }

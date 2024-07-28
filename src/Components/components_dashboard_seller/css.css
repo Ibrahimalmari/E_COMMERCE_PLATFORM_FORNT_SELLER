@@ -258,20 +258,104 @@ body {
 
 .notification-alert {
     position: fixed;
-    top: 50px;
-    right: 20px;
-    background-color: #d25f11;
+    top: 10px;
+    right: 10px;
+    background: #ffcc00;
     color: #333;
-    padding: 15px 30px;
+    padding: 10px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    font-size: 16px;
-    font-weight: bold;
-    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s ease-in-out;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    visibility: hidden;
+    z-index: 1001;
 }
 
 .notification-alert.show {
     opacity: 1;
+    visibility: visible;
+}
+
+
+/* Notification Modal */
+
+.notification-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.notification-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* نصف شفافة */
+    z-index: -1;
+}
+
+.notification-modal-content {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.notification-icon-modal {
+    font-size: 50px;
+    /* حجم الأيقونة */
+    color: #4CAF50;
+    /* لون الأيقونة */
+    margin-bottom: 10px;
+}
+
+.notification-text {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.notification-timer {
+    font-size: 14px;
+    color: #f44336;
+    /* لون المؤقت */
+    margin-bottom: 20px;
+}
+
+.notification-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.notification-actions .btn-accept,
+.notification-actions .btn-reject {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.notification-actions .btn-accept {
+    background-color: #4CAF50;
+    /* لون زر القبول */
+    color: white;
+}
+
+.notification-actions .btn-reject {
+    background-color: #f44336;
+    /* لون زر الرفض */
+    color: white;
 }

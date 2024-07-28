@@ -1,0 +1,175 @@
+/* order.css */
+
+
+/* إعدادات بطاقة الطلب */
+
+.order-card {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+    direction: rtl;
+    /* ضبط اتجاه الكتابة من اليمين لليسار */
+}
+
+
+/* إضافة خط فاصل بين الطلبات */
+
+.order-card::after {
+    content: "";
+    display: block;
+    border-top: 1px solid #ddd;
+    margin: 20px 0 0;
+    position: absolute;
+    width: calc(100% - 40px);
+    /* تقليل العرض قليلاً لتجنب التداخل */
+    left: 20px;
+    bottom: 0;
+}
+
+
+/* إعدادات القسم في بطاقة الطلب */
+
+.order-section {
+    margin-bottom: 20px;
+}
+
+
+/* إعدادات جدول الطلب */
+
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    table-layout: fixed;
+    /* لتثبيت عرض الأعمدة */
+    direction: rtl;
+    /* ضبط اتجاه الجدول من اليمين لليسار */
+}
+
+
+/* إعدادات رأس وجسم الجدول */
+
+.order-table th,
+.order-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: right;
+    /* محاذاة النص لليمين للغة العربية */
+    width: 150px;
+    /* ضبط عرض الأعمدة */
+}
+
+
+/* إعدادات رأس الجدول */
+
+.order-table th {
+    background-color: #f4f4f4;
+}
+
+
+/* إعدادات عناصر السلة */
+
+.order-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+
+/* إعدادات صورة عنصر السلة */
+
+.order-item-image {
+    width: 80px;
+    height: 80px;
+    margin-left: 15px;
+    /* تغيير إلى margin-left للاتجاه من اليمين لليسار */
+}
+
+
+/* إعدادات تفاصيل عنصر السلة */
+
+.order-item-details {
+    flex: 1;
+    text-align: right;
+    /* محاذاة النصوص لليمين */
+}
+
+
+/* إعدادات ملاحظات العنصر */
+
+.item-notes {
+    margin-top: 5px;
+}
+
+
+/* إعدادات تحميل الصفحة */
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+
+
+/* إعدادات التنبيهات */
+
+.alert {
+    text-align: center;
+    width: 300px;
+    height: 50px;
+    margin-left: 450px;
+    margin-top: 250px;
+}
+
+
+/* إعدادات نموذج البحث */
+
+.search-form {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+
+/* إعدادات نموذج البحث */
+
+.search-form .form-group {
+    margin-bottom: 15px;
+}
+
+
+/* إعدادات زر البحث */
+
+.search-form .btn-primary {
+    width: 100%;
+}
+
+
+/* إعدادات التصفح بين الصفحات */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.no-orders-message {
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    color: #555;
+}
+
+.no-orders-icon {
+    font-size: 50px;
+    color: #007bff;
+}

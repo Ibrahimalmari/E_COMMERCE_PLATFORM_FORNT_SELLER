@@ -21,6 +21,10 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
   const toggleProductSublinks = () => {
     setShowProductSublinks(!showProductSublinks);
   };
+  const [showOrderSublinks, setShowOrderSublinks] = useState(false);
+  const toggleOrderSublinks = () => {
+    setShowOrderSublinks(!showOrderSublinks);
+  };
   
   const [showCategorySublinks, setShowCategorySublinks] = useState(false);
   const toggleCategorySublinks = () => {
@@ -104,6 +108,30 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
               <li className="sidebar-sublist-item">
                 <Link to="/seller/Product/Add" className="sublink">
                   Add Product
+                </Link>
+              </li>
+            </ul>
+          )}
+        </li>
+        <li className="sidebar-list-item">
+          <div className="sidebar-sublink-header" onClick={toggleOrderSublinks}>
+            <span className="main-product">
+              <BsFillArchiveFill className="icon" /> My Order
+            </span>
+            <span className="arrow-icon">
+              <BsChevronRight />
+            </span>
+          </div>
+          {showOrderSublinks && (
+            <ul className="sidebar-sublist gray-background">
+              <li className="sidebar-sublist-item">
+                <Link to="/seller/Order/" className="sublink">
+                  All Order
+                </Link>
+              </li>
+              <li className="sidebar-sublist-item">
+                <Link to="/seller/Product/Add" className="sublink">
+                  TEST ORDER
                 </Link>
               </li>
             </ul>

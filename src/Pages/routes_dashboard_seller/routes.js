@@ -11,6 +11,7 @@ import EditCategory from "../dashboard_seller_pages/editcategory";
 import EditBranch from "../dashboard_seller_pages/editbranch";
 import MyProfile from "../../Components/components_register_login_seller/SellerProfile";
 import ChangePassword from "../../Components/components_register_login_seller/ChangePassword";
+import Order from "../dashboard_seller_pages/Order";
 const routes = [
     { path: '/seller', exact: true, name: 'Seller' },
     { path: '/Product', exact: true, name: 'product', component: Product },
@@ -26,6 +27,8 @@ const routes = [
     { path: '/MyStore', exact: true, name: 'mystore', component: MyStore },
     { path: '/MyProfile/', exact: true, name: 'myprofile', component: MyProfile },
     { path: '/ChangePassword/', exact: true, name: 'changepassword', component: ChangePassword },
+    { path: '/Order', exact: true, name: 'Order', component: Order },
+
 
 
 

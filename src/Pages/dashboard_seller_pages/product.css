@@ -1,42 +1,72 @@
-.product-card {
+.main-container {
+    padding: 20px;
+}
+
+.search-container {
     margin-bottom: 20px;
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* عرض 3 منتجات في كل صف */
+    gap: 20px;
+}
+
+.product-card {
     border: 1px solid #ddd;
-    border-radius: 10px;
+    border-radius: 8px;
+    overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    background: #fff;
+    /* إضافة خلفية بيضاء للبطاقات */
+}
+
+.product-card:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.product-image-col {
+    padding: 0;
+}
+
+.product-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.product-details-col {
+    padding: 15px;
+}
+
+.product-info {
+    margin-bottom: 10px;
+}
+
+.product-buttons {
+    margin-top: 15px;
     display: flex;
-    flex-direction: column;
-  }
-  
-  .product-images {
-    flex: 1;
+    gap: 10px;
+}
+
+.product-divider {
+    margin: 20px 0;
+}
+
+.no-products {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.loading-container {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .product-image {
-    width: 100%;
-    height: auto;
-    max-height: 300px;
-    object-fit: cover;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-  }
-  
-  .product-details {
-    padding: 20px;
-  }
-  
-  .product-details h2 {
-    margin-bottom: 10px;
-  }
-  
-  .product-buttons {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .product-divider {
-    margin: 20px 0;
-  }
-  
+    height: 100vh;
+}
+
+.pagination {
+    margin-top: 20px;
+}

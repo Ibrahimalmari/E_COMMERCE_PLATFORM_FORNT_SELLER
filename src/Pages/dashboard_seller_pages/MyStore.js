@@ -16,27 +16,23 @@ export default function MyStore() {
       try {
         const id = localStorage.getItem('id');
         const response = await axios.get(`http://127.0.0.1:8000/api/displaystore/${id}`);
-        
         if (response.data && response.data.store) {
           setData(response.data.store);
-          setLoading(false);
-        } else {
-          setLoading(false); // تحديث الحالة في حالة عدم وجود بيانات
         }
       } catch (error) {
         console.error('Error fetching data: ', error);
-        setLoading(false); // تحديث الحالة في حالة حدوث خطأ
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchData();
   }, []);
 
-  // التحقق من وجود البيانات قبل تطبيق الفلترة
-  const filteredData = data.length > 0 ? data.filter(item => (
+  const filteredData = data.filter(item => (
     item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     (item.seller && item.seller.email.toLowerCase().includes(searchTerm.toLowerCase()))
-  )) : data;
+  ));
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -53,32 +49,37 @@ export default function MyStore() {
       ) : (
         <>
           <div className="search-container">
-            <InputGroup className="mb-3">
+            <InputGroup className="mb-4">
               <FormControl
                 placeholder="Search by name or email..."
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
+                className="search-input"
               />
             </InputGroup>
           </div>
-          <div className="restaurant-list">
-            {currentItems.map(item => (
-              <div key={item.id} className="restaurant-card">
-                <div className="restaurant-cover">
-                  <img src={`http://127.0.0.1:8000/stores/${item.coverPhoto}`} alt={item.name} className="cover-image" />
+          <div className="store-list">
+            {currentItems.length ? (
+              currentItems.map(item => (
+                <div key={item.id} className="store-card">
+                  <div className="store-cover">
+                    <img src={`http://127.0.0.1:8000/stores/${item.coverPhoto}`} alt={item.name} className="cover-image" />
+                  </div>
+                  <div className="store-info">
+                    <h4 className="store-name">{item.name}</h4>
+                    <hr className="divider" />
+                    <p className="store-description">{item.description}</p>
+                    <p className="store-owner">
+                      <strong>Store Owner:</strong> {item.seller ? item.seller.name : 'N/A'} <br />
+                      <strong>Email:</strong> {item.seller ? item.seller.email : 'N/A'} <br />
+                      <strong>Phone:</strong> {item.seller ? item.seller.phone : 'N/A'}
+                    </p>
+                  </div>
                 </div>
-                <div className="restaurant-info">
-                  <h4 className="restaurant-name">{item.name}</h4>
-                  <hr style={{ width: '50%' }} />
-                  <p className="restaurant-address">{item.description}</p>
-                  <p className="restaurant-hours">
-                    Store Owner: {item.seller ? item.seller.name : 'N/A'} <br />
-                    Email: {item.seller ? item.seller.email : 'N/A'} <br />
-                    Phone: {item.seller ? item.seller.phone : 'N/A'}
-                  </p>
-                </div>
-              </div>
-            ))}
+              ))
+            ) : (
+              <div className="no-results">No results found</div>
+            )}
           </div>
           <PaginationWrapper totalItems={filteredData.length} itemsPerPage={itemsPerPage} paginate={paginate} />
         </>
@@ -89,7 +90,6 @@ export default function MyStore() {
 
 const PaginationWrapper = ({ totalItems, itemsPerPage, paginate }) => {
   const pageNumbers = [];
-
   for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
     pageNumbers.push(i);
   }

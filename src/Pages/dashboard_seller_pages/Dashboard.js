@@ -1,13 +1,11 @@
-import React from 'react'
 import "../../App.css";
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 export default function Dashboard() {
-    const [loading, setLoading] = useState(true);
-    
-    useEffect(() => {
-        setLoading(false);
-  }, [])
+  
+
+   
 
     return ( 
         <div> Dashboard </div>
